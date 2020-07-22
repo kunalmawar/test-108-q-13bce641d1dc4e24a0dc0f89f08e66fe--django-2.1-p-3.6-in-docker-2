@@ -20,5 +20,9 @@ from restapi.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', index),
+    url(r'^create', UserAPIView.as_view(), name='create-user'),
+    url(r'^add/(?P<userA>[\w\-]+)/(?P<userB>[\w\-]+)', SendFriendRequest.as_view(), name='friend-request'),
+    url(r'^friendRequests/(?P<userA>[\w\-]+)', GetPendingRequests.as_view(), name='pending-requests'),
+    url(r'^friends/(?P<userA>[\w\-]+)', GetAllFriends.as_view(), name='get-all-friends'),
+    url(r'^suggestions/(?P<userA>[\w\-]+)', GetAllFriendSuggestions.as_view(), name='get-all-friend-suggestions'),
 ]
